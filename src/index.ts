@@ -1,8 +1,7 @@
-import { displayWelcomeMessage, displayWelcomeMenu } from './ui/welcome';
+import { displayWelcomeMessage } from './ui/display';
 
 function main() {
     displayWelcomeMessage();
-    displayWelcomeMenu();
 }
 
 main();

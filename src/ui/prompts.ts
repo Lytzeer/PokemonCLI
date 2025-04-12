@@ -1,17 +1,9 @@
-import figlet from 'figlet';
 import chalk from 'chalk';
-import { clear } from 'console';
 import inquirer from 'inquirer';
+import { displayCredits, displayExitMessage } from './display';
 
-export function displayWelcomeMessage() {
-    clear();
-    console.log(chalk.magenta(figlet.textSync('PokemonCLI!')));
-    console.log(chalk.red('Welcome to the Pokemon CLI!'));
-    console.log(chalk.blue('Explore the world of Pokemon right from your terminal!'));
-    console.log(chalk.gray('Game created by: Lytzeer'));
-}
 
-export function displayWelcomeMenu() {
+export function displayMainMenuPrompt() {
     inquirer.prompt([
         {
             type: 'list',
@@ -25,14 +17,14 @@ export function displayWelcomeMenu() {
         }
     ]).then((answers) => {
         switch (answers.action) {
-            case 'View Pokemon List':
+            case 'Start Game':
                 console.log(chalk.green('Starting the game...'));
                 break;
             case 'Credits':
-                console.log(chalk.yellow('Displaying Credits'));
+                displayCredits();
                 break;
             case 'Exit':
-                console.log(chalk.red('Exiting the application...'));
+                displayExitMessage();
                 process.exit(0);
         }
     }).catch((error) => {
