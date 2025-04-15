@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { displayCredits, displayExitMessage } from './display';
+import { displayCredits, displayExitMessage, displayChooseFirst } from './display';
 
 
-export function displayMainMenuPrompt() {
+export function mainMenuPrompt() {
     inquirer.prompt([
         {
             type: 'list',
@@ -18,7 +18,7 @@ export function displayMainMenuPrompt() {
     ]).then((answers) => {
         switch (answers.action) {
             case 'Start Game':
-                console.log(chalk.green('Starting the game...'));
+                displayChooseFirst();
                 break;
             case 'Credits':
                 displayCredits();
@@ -29,5 +29,34 @@ export function displayMainMenuPrompt() {
         }
     }).catch((error) => {
         console.error(chalk.red('An error occurred while displaying the menu:', error));
+    });
+}
+
+export function chooseFirstPokemonPrompt() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'firstPokemon',
+            message: 'Choose your first Pokemon:',
+            choices: [
+                'Bulbasaur',
+                'Charmander',
+                'Squirtle'
+            ]
+        }
+    ]).then((answers) => {
+        switch (answers.firstPokemon) {
+            case 'Bulbasaur':
+                console.log(chalk.green('You chose Bulbasaur!'));
+                break;
+            case 'Charmander':
+                console.log(chalk.green('You chose Charmander!'));
+                break;
+            case 'Squirtle':
+                console.log(chalk.green('You chose Squirtle!'));
+                break;
+        }
+    }).catch((error) => {
+        console.error(chalk.red('An error occurred while choosing the first Pokemon:', error));
     });
 }

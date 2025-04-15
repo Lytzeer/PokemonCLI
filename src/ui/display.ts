@@ -1,7 +1,7 @@
 import figlet from 'figlet';
 import chalk from 'chalk';
 import { clear } from 'console';
-import { displayMainMenuPrompt } from './prompts';
+import { mainMenuPrompt, chooseFirstPokemonPrompt } from './prompts';
 
 function createFigletText(text: string): string {
     return figlet.textSync(text);
@@ -12,7 +12,7 @@ export function displayWelcomeMessage() {
     console.log(chalk.magenta(createFigletText('PokemonCLI!')));
     console.log(chalk.red('Welcome to the Pokemon CLI!'));
     console.log('\n')
-    displayMainMenuPrompt();
+    mainMenuPrompt();
 }
 
 export function displayCredits() {
@@ -28,4 +28,12 @@ export function displayExitMessage() {
     console.log(chalk.magenta(createFigletText('PokemonCLI')));
     console.log(chalk.red('Thank you for playing!'));
     console.log(chalk.blue('Goodbye!'));
+}
+
+export function displayChooseFirst() {
+    clear();
+    console.log(chalk.magenta(createFigletText('PokemonCLI!')));
+    console.log(chalk.red('Choose your first Pokemon!'));
+    console.log('\n')
+    chooseFirstPokemonPrompt();
 }
